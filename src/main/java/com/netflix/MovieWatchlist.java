@@ -30,13 +30,13 @@ public class MovieWatchlist {
                     System.out.println(movie + " added to your watchlist!");
                     break;
                 case 2:
-                    System.out.println("\n Your watchlist:");
+                    System.out.println("\n \uD83C Your watchlist:");
                     if (watchlist.isEmpty()) {
                         System.out.println("No movies yet — add some first!");
                     } else {
                         for (String m : watchlist) {
                             String rating = ratings.containsKey(m)
-                                    ? "⭐ " + ratings.get(m)
+                                    ? "⭐" + ratings.get(m)
                                     : "Not rated yet";
                             System.out.println("- " + m + " (" + rating + ")");
                         }
