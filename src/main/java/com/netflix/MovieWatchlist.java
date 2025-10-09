@@ -1,5 +1,7 @@
 package com.netflix;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -17,6 +19,7 @@ public class MovieWatchlist {
             System.out.println("1. Add a movie");
             System.out.println("2. Display all the movies");
             System.out.println("3. Give a movie a rating");
+            System.out.println("4. Done with movielist ");
 
 
             System.out.print("> ");
@@ -28,17 +31,26 @@ public class MovieWatchlist {
                     String movie = scanner.nextLine();
                     watchlist.add(movie);
                     System.out.println(movie + " added to your watchlist!");
+                    try {
+                        FileWriter writer = new FileWriter("src/main/resources/Movielist.txt");
+                        writer.write(watchlist.toString());
+                        writer.close();
+                    }
+                    catch(IOException e) {
+                        System.out.println("womp womp error");
+                    }
                     break;
                 case 2:
-                    System.out.println("\n \uD83C Your watchlist:");
+                    System.out.println("\n Your watchlist:");
                     if (watchlist.isEmpty()) {
                         System.out.println("No movies yet — add some first!");
                     } else {
-                        for (String m : watchlist) {
-                            String rating = ratings.containsKey(m)
-                                    ? "⭐" + ratings.get(m)
+                        for (String movies : watchlist) {
+
+                            String rating = ratings.containsKey(movies)
+                                    ? "⭐" + ratings.get(movies)
                                     : "Not rated yet";
-                            System.out.println("- " + m + " (" + rating + ")");
+                            System.out.println("- " + movies + " (" + rating + ")");
                         }
                         System.out.println("Total movies: " + watchlist.size());
                     }
